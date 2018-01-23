@@ -1,5 +1,5 @@
 <template>
-  <div class="ui fixed massive menu">
+  <div class="ui fixed large four item menu">
       <a href="" class="header item">
         <img src="../assets/PDIS.png" alt="" class="logo">議題分析表
       </a>

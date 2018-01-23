@@ -9,9 +9,9 @@
     <div class="ui form">
       <div class="grouped fields">
         <div class="field">
-          <p>問題</p>
-    <p>解法</p>
-    <p>佐證資料</p>
+          <router-link to="/question" class='item'>問題</router-link>
+     <router-link to="/solution" class='item'>解法</router-link>
+    <p class='item'>佐證資料</p>
         </div>
       </div>
     </div>
@@ -25,30 +25,13 @@
   <a class="title">釐清政策與策略</a>
   <div class="content"></div>
         </div>
- <a class="active teal item">
-    Inbox
-    <div class="ui teal left pointing label">1</div>
-  </a>
-  <a class="item">
-    Spam
-    <div class="ui teal left pointing label">51</div>
-  </a>
-  <a class="item">
-    Updates
-    <div class="ui teal left pointing label">1</div>
-  </a>
-  <div class="item">
-    <div class="ui transparent icon input">
-      <input type="text" placeholder="Search mail...">
-      <i class="search icon"></i>
-    </div>
-  </div>
+ 
 </div>
 
 </template>
 <style>
  .ui.left.fixed.vertical.menu {
-   margin-top:5.1em
+   margin-top:4.2em
  }
 </style>
 
