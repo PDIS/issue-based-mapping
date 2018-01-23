@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-header></v-header>
-    <leftmenu></leftmenu>
+    <sidebar></sidebar>
     <router-view/>
   </div>
 </template>
@@ -9,13 +9,13 @@
 <script>
 import header from './components/header'
 import footer from './components/footer'
-import leftmenu from './components/leftmenu'
+import sidebar from './components/sidebar'
 export default {
   name: 'App',
   components: {
     'v-header': header,
     'v-footer': footer,
-    leftmenu
+    sidebar
   }
 }
 </script>

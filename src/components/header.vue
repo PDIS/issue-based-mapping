@@ -1,6 +1,5 @@
 <template>
   <div class="ui fixed massive menu">
-    <div class="ui container">
       <a href="" class="header item">
         <img src="../assets/PDIS.png" alt="" class="logo">議題分析表
       </a>
@@ -12,7 +11,6 @@
         <div class="column"><h3 class="ui header">成案日期</h3></div>
         <div class="column"><h3 class="ui header">主/協辦部會</h3></div>
       </div> -->
-    </div>
   </div>
 </template>
 <style>

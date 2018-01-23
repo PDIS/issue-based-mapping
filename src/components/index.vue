@@ -1,10 +1,22 @@
 <template>
   <div class="ui container">
-12312312312313
+    <div class="ui segment">
+      <div class="ui left rail"><div class="ui segment">123</div></div>
+<h1>112e3r3fef4e</h1>
+    </div>
   </div>
 </template>
 <script>
-import axios from "axios";
+$('.ui.sidebar')
+  .sidebar({
+    context: $('.bottom.segment')
+  })
+  .sidebar('attach events', '.menu .item')
+;
+$(document).ready(function() {
+// using context
+})
+import axios from 'axios';
 export default {
   name: "index",
   data() {
