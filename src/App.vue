@@ -2,7 +2,15 @@
   <div id="app">
     <v-header></v-header>
     <!-- <sidebar></sidebar> -->
-    <router-view/>
+    <!-- <router-view/> -->
+    <div class="ui segments">
+      <div class="ui grid">
+        <sidebar></sidebar>
+        <div class="column">
+          <router-view/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,31 +1,27 @@
 <template>
+  <div class="three wide column">
+    <div class="ui styled accordion">
 
-       <div class="ui left fixed vertical accordion menu">
-        <div class="teal item">
-  <a class="title"><i class="dropdown icon"></i>
-    釐清議題脈絡
-  </a>
-  <div class="content">
-    <div class="ui form">
-      <div class="grouped fields">
-        <div class="field">
-          <router-link to="/question" class='item'>問題</router-link>
-     <router-link to="/solution" class='item'>解法</router-link>
-    <p class='item'>佐證資料</p>
+        <div class="title"><i class="dropdown icon"></i>
+        釐清議題脈絡
         </div>
-      </div>
-    </div>
-  </div>
-        </div>
-        <div class="teal item">
-  <a class="title">釐清利害關係人</a>
-  <div class="content"></div>
-        </div>
-        <div class="item">
-  <a class="title">釐清政策與策略</a>
-  <div class="content"></div>
-        </div>
+        <div class="content">
+          <div class="ui middle aligned divided selection list">
+      <div class="item"><p><router-link to="/question">問題</router-link></p></div>          
+      <div class="item"><p><router-link to="/solution">解法</router-link></p></div>
+      <div class="item"><p>佐證資料</p></div>
  
+    </div>
+
+        </div>
+     
+  <div class="title"><i class="dropdown icon"></i>釐清利害關係人</div>
+  <div class="content"></div>
+
+  <div class="title"><i class="dropdown icon"></i>釐清政策與策略</div>
+  <div class="content"></div>
+
+      </div>
 </div>
 
 </template>
