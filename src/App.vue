@@ -3,10 +3,11 @@
     <v-header></v-header>
     <!-- <sidebar></sidebar> -->
     <!-- <router-view/> -->
-    <div class="ui segments">
-      <div class="ui grid">
+    <div class="ui celled grid">
+      <div class="row">
         <sidebar></sidebar>
-        <div class="thirteen wide column">
+        <hackmd></hackmd>
+        <div class="seven wide column" id="content">
           <router-view/>
         </div>
       </div>
@@ -18,12 +19,14 @@
 import header from './components/header'
 import footer from './components/footer'
 import sidebar from './components/sidebar'
+import hackmd from './components/hackmd'
 export default {
   name: 'App',
   components: {
     'v-header': header,
     'v-footer': footer,
-    sidebar
+    sidebar,
+    hackmd
   }
 }
 </script>
@@ -38,6 +41,62 @@ html,body {height: 100%;}
   color: #2c3e50;
   /* margin-top: 5rem; */
 }
+ /*      body {
+        display: relative;
+      }
+      #hackmd {
+        top: 51.8px;
+        padding: 0px;
+      }
+      #sidebar {
+        position: fixed;
+        top: 51.8px;
+        left: 0;
+        bottom: 0;
+        width: 18%;
+        padding: 0px;
+      }
+      #sidebar .ui.menu {
+        margin: 2em 0 0;
+        font-size: 16px;
+      }
+      #sidebar .ui.menu > a.item {
+        color: #337ab7;
+        border-radius: 0 !important;
+      }
+      #sidebar .ui.menu > a.item.active {
+        background-color: #337ab7;
+        color: white;
+        border: none !important;
+      }
+      #sidebar .ui.menu > a.item:hover {
+        background-color: #4f93ce;
+        color: white;
+      }
+      
+      #content {
+        margin-left: 19%;
+        width: 81%;
+        margin-top: 3em;
+        padding-left: 3em;
+        float: left;
+      }
+      #content > .ui.grid {
+        padding-right: 4em;
+        padding-bottom: 3em;
+      }
+      #content h1 {
+        font-size: 36px;
+      }
+      #content .ui.divider:not(.hidden) {
+        margin: 0;
+      }
+      #content table.ui.table {
+        border: none;
+      }
+      #content table.ui.table thead th {
+        border-bottom: 2px solid #eee !important;
+      } */
 /* 
 .ui.footer.segment {
   margin: 5em 0em 0em;

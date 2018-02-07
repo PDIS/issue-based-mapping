@@ -1,5 +1,40 @@
 <template>
-  <div class="three wide column">
+  <div class="two wide column" id="sidebar">
+   
+      <div class="ui accordion">
+
+        <div class="title"><i class="dropdown icon"></i><i class="folder icon"></i>
+        議題相關文件
+        </div>
+        <div class="content">
+ 
+          <div class="ui middle aligned animated relaxed list">
+     <!--  <div class="item"><p><router-link to="/question">代辦事項</router-link></p></div>       -->    
+     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
+      <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
+      <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div>
+
+    </div>
+
+        </div>
+     
+  <div class="title"><i class="dropdown icon"></i><i class="info icon"></i>議題相關資訊</div>
+  <div class="content">
+              <div class="ui middle aligned divided selection list">   
+     <div class="item"><p>提案名稱</p></div>
+      <div class="item"><p>提案人</p></div>
+      <div class="item"><p>附議人數</p></div>
+ <div class="item"><p>主協辦部會</p></div>
+    </div>
+  </div>
+
+  <div class="title"><i class="dropdown icon"></i><i class="setting icon"></i>選項</div>
+  <div class="content"></div>
+
+      </div>
+
+  </div>
+<!--   <div class="three wide column">
     <div class="ui styled accordion">
 
         <div class="title"><i class="dropdown icon"></i>
@@ -22,13 +57,16 @@
   <div class="content"></div>
 
       </div>
-</div>
+</div> -->
 
 </template>
 <style>
 /*  .ui.left.fixed.vertical.menu {
    margin-top:4.2em
  } */
+ .item {
+   margin-left: 2em
+ }
 </style>
 
 <script>
