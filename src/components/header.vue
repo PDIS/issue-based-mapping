@@ -1,16 +1,19 @@
 <template>
-  <div class="ui fixed large four item menu">
+  <div class="ui inverted large borderless fluid menu">
       <a href="" class="header item">
         <img src="../assets/PDIS.png" alt="" class="logo">議題分析表
       </a>
-      <div class="item">議題名稱：【還我七天假】行政院立即提案《國定假日法》，將國定假日恢復19天。</div>
+      <!-- <div class="item">議題名稱：【還我七天假】行政院立即提案《國定假日法》，將國定假日恢復19天。</div>
       <div class="item">成案日期：2017-09-27</div>
-      <div class="item">主/協辦部會：內政部</div>
-<!--       <div class="ui three column doubling grid">
-        <div class="column"><h3 class="ui header">議題名稱</h3></div>
-        <div class="column"><h3 class="ui header">成案日期</h3></div>
-        <div class="column"><h3 class="ui header">主/協辦部會</h3></div>
-      </div> -->
+      <div class="item">主/協辦部會：內政部</div> -->
+      <div class="right menu">
+        <div class="item">
+          <div class="ui small input">
+            <input placeholder="Search..." />
+          </div>
+        </div>
+        <a class="item">Dashboard</a><a class="item">Settings</a><a class="item">Profile</a><a class="item">Help</a>
+      </div>
   </div>
 </template>
 <style>

@@ -6,7 +6,7 @@
     <div class="ui segments">
       <div class="ui grid">
         <sidebar></sidebar>
-        <div class="column">
+        <div class="thirteen wide column">
           <router-view/>
         </div>
       </div>
@@ -36,7 +36,7 @@ html,body {height: 100%;}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 /* 
 .ui.footer.segment {

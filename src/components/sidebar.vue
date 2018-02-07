@@ -26,9 +26,9 @@
 
 </template>
 <style>
- .ui.left.fixed.vertical.menu {
+/*  .ui.left.fixed.vertical.menu {
    margin-top:4.2em
- }
+ } */
 </style>
 
 <script>

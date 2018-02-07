@@ -1,6 +1,20 @@
 <template>
 
-      <p>Middle</p>
+  <div class="ui form">
+
+      <div class="inline field">
+        <label>提案人</label>
+        <input type="text" name="name" placeholder="姓名">
+      </div>
+       <div class="inline field">
+        <label>提案內容</label>
+        <textarea></textarea>
+      </div>
+      <div class="inline field">
+        <label>問題分析</label>
+        <input type="text" name="name" placeholder="問題分析">
+      </div>
+  </div>
 
 </template>
 <script>
