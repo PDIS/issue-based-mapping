@@ -5,11 +5,11 @@
         議題相關文件
       </div>
       <div class="content">
-        <div class="ui middle aligned animated relaxed list">
-     <!--  <div class="item"><p><router-link to="/question">代辦事項</router-link></p></div>       -->    
-          <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
+        <div class="ui middle aligned animated relaxed list" v-for="file in files">
+          <div class="item"><i class="file icon"></i><div class="content"><a v-bind:href="file[1]">{{file[0]}}</a> </div></div>
+      <!--     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
           <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
-          <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div>
+          <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div> -->
         </div>
       </div>
       <div class="title"><i class="dropdown icon"></i><i class="info icon"></i>議題相關資訊</div>
@@ -58,6 +58,14 @@
  .item {
    margin-left: 2em
  }
+ 
+ a {
+   color:black
+ }
+
+ a:hover {
+   color: black
+ }
 </style>
 
 <script>
@@ -78,7 +86,20 @@ $(document).ready(function () {
     }
   })
 })
+import axios from 'axios'
 export default {
-  name: 'sidebar'
+  name: 'sidebar',
+  data() {
+    return {
+      files: []
+    }
+  },
+  created: function() {
+    axios.get('https://ethercalc.org/kb0km522udfu.csv.json').then(res => {
+      res.data.map(file => {
+        this.files.push(file)
+      })
+    })
+  } 
 }
 </script>
