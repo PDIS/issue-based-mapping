@@ -22,8 +22,34 @@
         </div>
       </div>
       <div class="title"><i class="dropdown icon"></i><i class="setting icon"></i>選項</div>
-      <div class="content"></div>
+      <div class="content">
+        <div class="ui middle aligned animated relaxed list">
+          <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div>
+        </div>
+      </div>
     </div>
+    <div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+新增議題相關文件
+  </div>
+  <div class="content">
+  <div class="ui form">
+    <div class="field">
+    <label>檔案名稱</label>
+    <input type="text" placeholder="檔案名稱">
+  </div>
+  <div class="field">
+    <label>檔案網址</label>
+    <input type="text" placeholder="檔案網址">
+  </div>
+  </div>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button" v-on:click="addfile" id="ok">OK</div>
+  </div>
+</div>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -66,6 +92,11 @@
  a:hover {
    color: black
  }
+
+ #add {
+   cursor: pointer
+ }
+
 </style>
 
 <script>
@@ -85,6 +116,14 @@ $(document).ready(function () {
       trigger: '.title .icon'
     }
   })
+  $('#add').click(function () {
+    $('.ui.modal')
+    .modal('show');
+  })
+  $('#ok').click(function () {
+    $('.ui.modal')
+    .modal('hide');
+  })
 })
 import axios from 'axios'
 export default {
@@ -92,6 +131,11 @@ export default {
   data() {
     return {
       files: []
+    }
+  },
+  methods: {
+    addfile: function () {
+      console.log('fuck')
     }
   },
   created: function() {
