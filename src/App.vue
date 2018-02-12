@@ -3,13 +3,11 @@
     <v-header></v-header>
     <!-- <sidebar></sidebar> -->
     <!-- <router-view/> -->
-    <div class="ui celled grid">
+    <div class="ui celled resizable grid">
       <div class="row">
         <sidebar></sidebar>
         <hackmd></hackmd>
-        <div class="seven wide column" id="content">
-          <router-view/>
-        </div>
+        <issue></issue>
       </div>
     </div>
   </div>
@@ -20,13 +18,15 @@ import header from './components/header'
 import footer from './components/footer'
 import sidebar from './components/sidebar'
 import hackmd from './components/hackmd'
+import issue from './components/issue'
 export default {
   name: 'App',
   components: {
     'v-header': header,
     'v-footer': footer,
     sidebar,
-    hackmd
+    hackmd,
+    issue
   }
 }
 </script>
@@ -41,6 +41,10 @@ html,body {height: 100%;}
   color: #2c3e50;
   /* margin-top: 5rem; */
 }
+.column {
+  resize: horizontal;
+}
+
  /*      body {
         display: relative;
       }

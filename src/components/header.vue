@@ -20,6 +20,12 @@
 /*   .ui.menu .item img.logo {
     margin-right: 1.5em;
   } */
+  .ui.menu {
+    margin: 0;
+  }
+  .ui.celled.grid {
+    margin: 0;
+  }
 </style>
 
 <script>
