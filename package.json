@@ -11,13 +11,16 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
+  "homepage": "git@github.com:PDIS/issue-based-mapping",
   "dependencies": {
     "axios": "^0.17.1",
     "jquery": "^3.2.1",
     "semantic-ui-css": "^2.2.12",
     "vue": "^2.5.2",
+    "vue-gh-pages": "^1.8.8",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
