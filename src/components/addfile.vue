@@ -26,7 +26,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'filemodal',
+  name: 'addfile',
   data() {
     return {
       file: {

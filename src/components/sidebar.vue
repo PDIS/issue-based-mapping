@@ -24,11 +24,15 @@
       <div class="title"><i class="dropdown icon"></i><i class="setting icon"></i>選項</div>
       <div class="content">
         <div class="ui middle aligned animated relaxed list">
-          <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div>
+          <!-- <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div> -->
+          <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
+          <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
+          <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
+          <div class="item"><i class="map icon"></i><div class="content">導覽模式</div></div>
         </div>
       </div>
     </div>
-    <filemodal></filemodal>
+    <addfile></addfile>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -105,11 +109,11 @@ $(document).ready(function () {
   })
 })
 import axios from 'axios'
-import filemodal from './filemodal'
+import addfile from './addfile'
 export default {
   name: 'sidebar',
   components: {
-    filemodal
+    addfile
   },
   data() {
     return {
