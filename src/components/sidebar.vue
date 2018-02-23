@@ -60,12 +60,13 @@
 </div> -->
 
 </template>
-<style>
+<style scoped>
 /*  .ui.left.fixed.vertical.menu {
    margin-top:4.2em
  } */
  .item {
-   margin-left: 2em
+   margin-left: 2em;
+   cursor: pointer
  }
  
  a {
