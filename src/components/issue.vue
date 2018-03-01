@@ -76,9 +76,22 @@
     </div>
   </div>
   <div class="card">
-    <div class="content">
+    <div class="content" v-if="show">
+      <div class="ui form">
+    <div class="field">
+  <label>標籤</label>
+  <input type="text" placeholder="顯示標籤">
+  <label>姓名</label>
+  <input type="text" placeholder="請填寫姓名">
+  <label>單位</label>
+  <input type="text" placeholder="請填寫單位">
     </div>
-    <div class="ui bottom attached primary button">
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui primary button">儲存</div>
+      <div class="ui button">取消</div>
+    </div>
+    <div class="ui bottom attached primary button" @click="toggle" v-else>
       <i class="add icon"></i>
       新增利害關係人
     </div>
@@ -164,6 +177,16 @@ $(function () {
 })
 export default {
   name: 'issue',
+  data() {
+    return {
+      show: false
+    }
+  },
+  methods: {
+    toggle: function() {
+      this.show = !this.show;
+    }
+  }
 }
 </script>
 
