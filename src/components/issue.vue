@@ -54,7 +54,8 @@
   <div class="ui cards">
     <div class="card">
     <div class="image">
-      <img src="https://talk.pdis.nat.gov.tw/user_avatar/talk.pdis.nat.gov.tw/audreyt/800/574_1.png">
+      <a class="ui teal label">林務局</a>
+      <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
     </div>
     <div class="content">
       <div class="header">王小明</div>
@@ -91,10 +92,11 @@
       <div class="ui primary button">儲存</div>
       <div class="ui button">取消</div>
     </div>
-    <div class="ui bottom attached primary button" @click="toggle" v-else>
+    <!-- <div class="ui bottom attached primary button" @click="toggle" v-else>
       <i class="add icon"></i>
       新增利害關係人
-    </div>
+    </div> -->
+    <button class="ui primary button" @click="toggle" v-else><i class="add icon"></i>新增利害關係人</button>
   </div>
   </div>
 </div>
@@ -163,6 +165,36 @@
 <style scoped>
 a {
   cursor: pointer;
+}
+
+.ui.card>.image, .ui.cards>.card>.image {
+  background-color: white
+}
+
+.ui.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+  border-radius: 50%; 
+  width: 15em;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.ui.teal.label {
+  margin-left:1em;
+  margin-top:1em;
+}
+
+.ui.card>.extra a:not(.ui), .ui.cards>.card>.extra a:not(.ui) {
+  color:blue
+}
+
+.ui.card>.button, .ui.card>.buttons, .ui.cards>.card>.button, .ui.cards>.card>.buttons {
+  margin:auto;
+  width:15em;
+}
+
+.ui.multiple.dropdown>.ui.label {
+  background: lightseagreen;
+  color:white;
 }
 </style>
 

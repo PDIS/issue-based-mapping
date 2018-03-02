@@ -1,5 +1,5 @@
 <template>
-  <div class="ui inverted large borderless fluid menu">
+  <div class="ui large borderless fluid menu">
       <a href="" class="header item">
         <img src="../assets/PDIS.png" alt="" class="logo">&nbsp議題分析表
       </a>
@@ -11,6 +11,9 @@
           <div class="ui small input">
             <input placeholder="關鍵字搜尋" />
           </div>
+        </div>
+        <div class="item">
+                      <i class="cog icon"></i>
         </div>
         <!-- <a class="item">Dashboard</a><a class="item">Settings</a><a class="item">Profile</a><a class="item">Help</a> -->
       </div>
@@ -25,6 +28,9 @@
   }
   .ui.celled.grid {
     margin: 0;
+  }
+  .cog.icon {
+    font-size: 1.5em;
   }
 </style>
 
