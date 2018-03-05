@@ -28,11 +28,12 @@
           <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
           <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
           <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
-          <div class="item"><i class="map icon"></i><div class="content">導覽模式</div></div>
+          <div class="item"><i class="map icon"></i><div class="content" v-on:click="guidetour">導覽模式</div></div>
         </div>
       </div>
     </div>
     <addfile></addfile>
+    <guidetour></guidetour>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -100,21 +101,23 @@ $(document).ready(function () {
       trigger: '.title .icon'
     }
   })
-  $('#add').click(function () {
+  /* $('#guidetour').click(function () {
     $('.ui.modal')
     .modal('show');
-  })
+  }) */
   $('#ok').click(function () {
     $('.ui.modal')
     .modal('hide');
   })
 })
 import axios from 'axios'
-import addfile from './addfile'
+import addfile from './modals/addfile'
+import guidetour from './modals/guidetour'
 export default {
   name: 'sidebar',
   components: {
-    addfile
+    addfile,
+    guidetour
   },
   data() {
     return {
@@ -124,6 +127,10 @@ export default {
   methods: {
     addfile: function (filename,fileaddress) {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
+    },
+    guidetour: function() {
+      $('#guidetour').modal('setting', 'closable', false)
+    .modal('show');
     }
   },
   created: function() {
