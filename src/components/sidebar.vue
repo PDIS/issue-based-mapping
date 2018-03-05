@@ -33,7 +33,8 @@
       </div>
     </div>
     <addfile></addfile>
-    <guidetour></guidetour>
+    <step1></step1>
+    <step2></step2>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -112,12 +113,14 @@ $(document).ready(function () {
 })
 import axios from 'axios'
 import addfile from './modals/addfile'
-import guidetour from './modals/guidetour'
+import step1 from './guidetour/step1'
+import step2 from './guidetour/step2'
 export default {
   name: 'sidebar',
   components: {
     addfile,
-    guidetour
+    step1,
+    step2,
   },
   data() {
     return {
@@ -129,7 +132,7 @@ export default {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
     },
     guidetour: function() {
-      $('#guidetour').modal('setting', 'closable', false)
+      $('#step1').modal('setting', 'closable', false)
     .modal('show');
     }
   },
