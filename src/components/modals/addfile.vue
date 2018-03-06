@@ -43,7 +43,7 @@ export default {
         dataType: 'application/json',
         contentType: 'text/csv',
         processData: false,
-        data: 'a,b,c'
+        data: 'menu' + ',' + this.file.name + ',' + this.file.address
       });
     }
   },

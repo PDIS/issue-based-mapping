@@ -6,7 +6,7 @@
       </div>
       <div class="content">
         <div class="ui middle aligned animated relaxed list" v-for="file in files">
-          <div class="item"><i class="file pdf outline icon"></i><div class="content"><a v-bind:href="file[1]" target="_blank">{{file[0]}}</a> </div></div>
+          <div class="item"><i class="file pdf outline icon"></i><div class="content"><a v-bind:href="file[2]" target="_blank">{{file[1]}}</a> </div></div>
       <!--     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
           <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
           <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div> -->
@@ -141,9 +141,12 @@ export default {
     }
   },
   created: function() {
-    axios.get('https://ethercalc.org/6cg3pkwwprdq.csv.json').then(res => {
+    axios.get('https://ethercalc.org/5hqx4o9ij6sl.csv.json').then(res => {
+      console.log(res.data)
       res.data.map(file => {
-        this.files.push(file)
+        if (file[0] == 'menu') {
+          this.files.push(file)
+        }
       })
     })
   } 
