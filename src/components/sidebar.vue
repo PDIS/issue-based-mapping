@@ -24,7 +24,7 @@
       <div class="title"><i class="dropdown icon"></i><i class="setting icon"></i>選項</div>
       <div class="content">
         <div class="ui middle aligned animated relaxed list">
-          <!-- <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div> -->
+          <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div>
           <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
           <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
           <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
@@ -102,16 +102,20 @@ $(document).ready(function () {
       trigger: '.title .icon'
     }
   })
-  /* $('#guidetour').click(function () {
-    $('.ui.modal')
+  $('#add').click(function () {
+    $('#addfile')
     .modal('show');
-  }) */
+  })
   $('#ok').click(function () {
     $('.ui.modal')
     .modal('hide');
   })
 })
 import axios from 'axios'
+import VueTour from 'vue-tour'
+
+require('vue-tour/dist/vue-tour.css')
+
 import addfile from './modals/addfile'
 import step1 from './guidetour/step1'
 import step2 from './guidetour/step2'

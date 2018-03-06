@@ -1,5 +1,5 @@
 <template>
-      <div class="ui modal">
+      <div class="ui modal" id="addfile">
   <i class="close icon"></i>
   <div class="header">
 新增議題相關文件
@@ -37,7 +37,14 @@ export default {
   },
   methods: {
     addfile: function () {
-      axios.post('https://ethercalc.org/_/6cg3pkwwprdq',this.file).then()
+      $.ajax({
+        url: "https://ethercalc.org/_/5hqx4o9ij6sl",
+        type: 'POST',
+        dataType: 'application/json',
+        contentType: 'text/csv',
+        processData: false,
+        data: 'a,b,c'
+      });
     }
   },
 }
