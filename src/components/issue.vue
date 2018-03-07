@@ -60,15 +60,15 @@
   <div class="ui cards">
     <div class="card" v-for="person in people">
     <div class="image">
-      <a class="ui teal label">{{person[2]}}</a>
-      <img v-bind:src="person[1]" />
+      <a class="ui teal label">{{person.title}}</a>
+      <img v-bind:src="person.img" />
     </div>
     <div class="content">
-      <div class="header" v-bind="person[3]"></div>
+      <div class="header">{{person.name}}</div>
 <!--       <div class="meta">
         <a>農委會林務局</a>
       </div> -->
-      <div class="description" v-bind="person[4]">
+      <div class="description">{{person.dep}}
       </div>
     </div>
     <div class="extra content">
@@ -250,9 +250,14 @@ export default {
   created: function () {
     axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
       res.data.map(person => {
-        console.log(person)
         if (person[0] == 'people') {
-          this.people.push(person)
+          let data = {}
+          data.img = person[1]
+          data.title = person[2]
+          data.name = person[3]
+          data.dep = person[4]
+          data.time = '2017-10-10 13:42'
+          this.people.push(data)
         }
       })
     })
