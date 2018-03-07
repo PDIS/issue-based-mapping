@@ -25,8 +25,13 @@
 
 <script>
 import axios from 'axios'
+import sidebar from '../sidebar'
+import { setTimeout } from 'timers';
 export default {
   name: 'addfile',
+  components: {
+    sidebar
+  },
   data() {
     return {
       file: {
@@ -44,7 +49,7 @@ export default {
         contentType: 'text/csv',
         processData: false,
         data: 'menu' + ',' + this.file.name + ',' + this.file.address
-      }).then(location.reload());
+      }).then();
     }
   },
 }

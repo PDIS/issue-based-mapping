@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <addfile></addfile>
+    <addfile ref="sidebar"></addfile>
     <step1></step1>
     <step2></step2>
   </div>
@@ -139,22 +139,22 @@ export default {
       $('#step1').modal('setting', 'closable', false)
     .modal('show');
     },
-    updateComponent(){    
-							this.$forceUpdate()
-              console.log('test')
+    getdata: function () {
+      this.files = []
+      axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+        res.data.map(file => {
+          if (file[0] == 'menu') {
+            let data = {}
+            data.name = file[1]
+            data.address = file[2]
+            this.files.push(data)
+          }
+        })
+      })
     }
   },
   created: function() {
-    axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
-      res.data.map(file => {
-        if (file[0] == 'menu') {
-          let data = {}
-          data.name = file[1]
-          data.address = file[2]
-          this.files.push(data)
-        }
-      })
-    })
+    this.getdata()
    /*  let res = fetch('https://ethercalc.org/622t4v2804sk.csv.json')
     let data = res.json()
     console.log(data) */

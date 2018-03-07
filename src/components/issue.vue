@@ -58,7 +58,7 @@
   <h1 class="ui large header">釐清利害關係人</h1>
   <div class="ui divider"></div>
   <div class="ui cards">
-    <div class="card" v-for="person in people">
+    <div class="card" v-for="person in people" key:person.name>
     <div class="image">
       <a class="ui teal label">{{person.title}}</a>
       <img v-bind:src="person.img" />
@@ -94,7 +94,7 @@
     </div>
       </div>
       <div class="ui divider"></div>
-      <div class="ui primary button" @click="saveperson">儲存</div>
+      <div class="ui primary button" @click="saveperson();toggle2()">儲存</div>
       <div class="ui button" @click="toggle">取消</div>
     </div>
     <!-- <div class="ui bottom attached primary button" @click="toggle" v-else>
@@ -230,6 +230,7 @@ export default {
       } */
       people: [],
       person: {
+        img: 'https://semantic-ui.com/images/avatar/large/elliot.jpg',
         title: '',
         name: '',
         dep: ''
@@ -239,6 +240,13 @@ export default {
   methods: {
     toggle: function() {
       this.show = !this.show;
+      this.person.img = 'https://semantic-ui.com/images/avatar/large/elliot.jpg';
+      this.person.name = '';
+      this.person.title = '';
+      this.person.dep = '';
+    },
+    toggle2: function() {
+      this.show = !this.show;
     },
     saveperson: function() {
        $.ajax({
@@ -247,27 +255,34 @@ export default {
         dataType: 'application/json',
         contentType: 'text/csv',
         processData: false,
-        data: 'people' + ',' + 'https://semantic-ui.com/images/avatar/large/elliot.jpg' + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
-        success: function (data) {
-          location.reload()
-        },
+        data: 'people' + ',' + this.person.img + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
+      }).then(this.people.push(this.person)).then((this.person = {}))
+      //.then(this.getdata())
+    },
+    getdata: function () {
+      this.people = []
+      axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+        res.data.map(person => {
+          if (person[0] == 'people') {
+            let data = {}
+            data.img = person[1]
+            data.title = person[2]
+            data.name = person[3]
+            data.dep = person[4]
+            data.time = '2017-10-10 13:42'
+            this.people.push(data)
+          }
+        })
       })
     }
   },
+  watch: {
+    people: function () {
+      console.log('hello')
+    }
+  },
   created: function () {
-    axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
-      res.data.map(person => {
-        if (person[0] == 'people') {
-          let data = {}
-          data.img = person[1]
-          data.title = person[2]
-          data.name = person[3]
-          data.dep = person[4]
-          data.time = '2017-10-10 13:42'
-          this.people.push(data)
-        }
-      })
-    })
+    this.getdata()
   }
 }
 </script>
