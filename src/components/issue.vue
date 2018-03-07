@@ -86,15 +86,15 @@
       <div class="ui form">
     <div class="field">
   <label>標籤</label>
-  <input type="text" placeholder="顯示標籤" v-model="people.title">
+  <input type="text" placeholder="顯示標籤" v-model="person.title">
   <label>姓名</label>
-  <input type="text" placeholder="請填寫姓名" v-model="people.name">
+  <input type="text" placeholder="請填寫姓名" v-model="person.name">
   <label>單位</label>
-  <input type="text" placeholder="請填寫單位" v-model="people.department">
+  <input type="text" placeholder="請填寫單位" v-model="person.dep">
     </div>
       </div>
       <div class="ui divider"></div>
-      <div class="ui primary button" @click="savepeople">儲存</div>
+      <div class="ui primary button" @click="saveperson">儲存</div>
       <div class="ui button" @click="toggle">取消</div>
     </div>
     <!-- <div class="ui bottom attached primary button" @click="toggle" v-else>
@@ -228,23 +228,30 @@ export default {
         name: '',
         department: '',
       } */
-      people: []
+      people: [],
+      person: {
+        title: '',
+        name: '',
+        dep: ''
+      }
     }
   },
   methods: {
     toggle: function() {
       this.show = !this.show;
     },
-    savepeople: function() {
+    saveperson: function() {
        $.ajax({
         url: "https://ethercalc.org/_/622t4v2804sk",
         type: 'POST',
         dataType: 'application/json',
         contentType: 'text/csv',
         processData: false,
-        data: 'people' + ',' + this.people.title + ',' + this.people.name + ',' + this.people.department
-      });
-      console.log('people' + ',' + this.people.title + ',' + this.people.name + ',' + this.people.department)
+        data: 'people' + ',' + 'https://semantic-ui.com/images/avatar/large/elliot.jpg' + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
+        success: function (data) {
+          location.reload()
+        },
+      })
     }
   },
   created: function () {

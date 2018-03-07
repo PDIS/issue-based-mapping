@@ -44,7 +44,7 @@ export default {
         contentType: 'text/csv',
         processData: false,
         data: 'menu' + ',' + this.file.name + ',' + this.file.address
-      });
+      }).then(location.reload());
     }
   },
 }
