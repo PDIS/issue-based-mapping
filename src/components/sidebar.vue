@@ -5,8 +5,9 @@
         議題相關文件
       </div>
       <div class="content">
-        <div class="ui middle aligned animated relaxed list" v-for="file in files">
-          <div class="item"><i class="file pdf outline icon"></i><div class="content"><a v-bind:href="file[2]" target="_blank">{{file[1]}}</a> </div></div>
+        <div class="ui middle aligned animated relaxed list">
+          <div class="item"  v-for="file in files" ><i class="file pdf outline icon"></i><div class="content"><a v-bind:href="file[2]" target="_blank">{{file[1]}}</a></div></div>
+          <div class="item"><i class="plus icon"></i><div class="content" id="add">新增議題相關文件</div></div>
       <!--     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
           <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
           <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div> -->
@@ -24,7 +25,6 @@
       <div class="title"><i class="dropdown icon"></i><i class="setting icon"></i>選項</div>
       <div class="content">
         <div class="ui middle aligned animated relaxed list">
-          <div class="item"><i class="file icon"></i><div class="content" id="add">新增議題相關文件</div></div>
           <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
           <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
           <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
@@ -138,11 +138,14 @@ export default {
     guidetour: function() {
       $('#step1').modal('setting', 'closable', false)
     .modal('show');
+    },
+    updateComponent(){    
+							this.$forceUpdate()
+              console.log('test')
     }
   },
   created: function() {
-    axios.get('https://ethercalc.org/5hqx4o9ij6sl.csv.json').then(res => {
-      console.log(res.data)
+    axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
       res.data.map(file => {
         if (file[0] == 'menu') {
           this.files.push(file)

@@ -18,7 +18,7 @@
   </div>
   <div class="actions">
 <!--     <div class="ui button">Cancel</div> -->
-    <div class="ui button" v-on:click="addfile" id="ok">新增</div>
+    <div class="ui primary button" v-on:click="addfile" id="ok">新增</div>
   </div>
 </div>
 </template>
@@ -38,7 +38,7 @@ export default {
   methods: {
     addfile: function () {
       $.ajax({
-        url: "https://ethercalc.org/_/5hqx4o9ij6sl",
+        url: "https://ethercalc.org/_/622t4v2804sk",
         type: 'POST',
         dataType: 'application/json',
         contentType: 'text/csv',

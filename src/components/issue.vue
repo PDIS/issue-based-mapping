@@ -2,17 +2,17 @@
   <div class="seven wide column" id="content">
     <!-- <router-view/> -->
     <div class="ui top attached tabular menu">
-  <a class="active item" data-tab="first">釐清議題脈絡</a>
-  <a class="item" data-tab="second">釐清利害關係人</a>
-  <a class="item" data-tab="third">釐清政策與策略</a>
+  <a class="active item" data-tab="threads">釐清議題脈絡</a>
+  <a class="item" data-tab="people">釐清利害關係人</a>
+  <a class="item" data-tab="policies">釐清政策與策略</a>
 </div>
-<div class="ui bottom attached active tab segment" data-tab="first">
+<div class="ui bottom attached active tab segment" data-tab="threads">
   <h1 class="ui large header">釐清議題脈絡</h1>
   <div class="ui divider"></div>
     <div class="ui form">
        <div class="field">
         <label>問題描述</label>
-        <textarea placeholder="請輸入問題描述"></textarea>
+        <textarea placeholder="請輸入問題描述" v-bind="this.threads.description" ></textarea>
       </div>
       <div class="field">
               <label>關聯利害關係人</label>
@@ -29,7 +29,13 @@
       </div>
       <div class="field">
         <label>關聯問題</label>
-        <div class="ui selection dropdown">
+        <select class="ui search dropdown">
+  <option value="">關連問題到</option>
+  <option value="1">劃分區域</option>
+  <option value="2">攜帶寵物證明</option>
+  <option value="0">+ 新增解法</option>
+</select>
+        <!-- <div class="ui selection dropdown">
           <input type="hidden" name="123"><i class="dropdown icon"></i>
             <div class="default text">關連問題到...</div>
             <div class="menu">
@@ -37,7 +43,7 @@
     <div class="item" data-value="0">攜帶寵物證明</div>
     <div class="item">+ 新增解法</div>
   </div>
-        </div>
+        </div> -->
       </div>
       <div class="inline field">
         <label>描述其他問題</label>
@@ -48,28 +54,27 @@
       <div class="ui button">取消</div>
   </div>
 </div>
-<div class="ui bottom attached tab segment" data-tab="second">
+<div class="ui bottom attached tab segment" data-tab="people">
   <h1 class="ui large header">釐清利害關係人</h1>
   <div class="ui divider"></div>
   <div class="ui cards">
-    <div class="card">
+    <div class="card" v-for="person in people">
     <div class="image">
-      <a class="ui teal label">林務局</a>
-      <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+      <a class="ui teal label">{{person[2]}}</a>
+      <img v-bind:src="person[1]" />
     </div>
     <div class="content">
-      <div class="header">王小明</div>
+      <div class="header" v-bind="person[3]"></div>
 <!--       <div class="meta">
         <a>農委會林務局</a>
       </div> -->
-      <div class="description">
-        農委會林務局
+      <div class="description" v-bind="person[4]">
       </div>
     </div>
     <div class="extra content">
       <span>
         <i class="time icon"></i>
-        2015-11-12 13:42
+        2017-11-12 13:42
       </span>
            <span class="right floated">
        <a>修改</a>
@@ -81,16 +86,16 @@
       <div class="ui form">
     <div class="field">
   <label>標籤</label>
-  <input type="text" placeholder="顯示標籤">
+  <input type="text" placeholder="顯示標籤" v-model="people.title">
   <label>姓名</label>
-  <input type="text" placeholder="請填寫姓名">
+  <input type="text" placeholder="請填寫姓名" v-model="people.name">
   <label>單位</label>
-  <input type="text" placeholder="請填寫單位">
+  <input type="text" placeholder="請填寫單位" v-model="people.department">
     </div>
       </div>
       <div class="ui divider"></div>
-      <div class="ui primary button">儲存</div>
-      <div class="ui button">取消</div>
+      <div class="ui primary button" @click="savepeople">儲存</div>
+      <div class="ui button" @click="toggle">取消</div>
     </div>
     <!-- <div class="ui bottom attached primary button" @click="toggle" v-else>
       <i class="add icon"></i>
@@ -100,7 +105,7 @@
   </div>
   </div>
 </div>
-<div class="ui bottom attached tab segment" data-tab="third">
+<div class="ui bottom attached tab segment" data-tab="policies">
     <h1 class="ui large header">釐清政策與策略</h1>
   <div class="ui divider"></div>
   <div class="ui form">
@@ -207,17 +212,50 @@ $(function () {
 ;
 ;
 })
+import axios from 'axios'
 export default {
   name: 'issue',
   data() {
     return {
-      show: false
+      show: false,
+      threads: {
+        description: '',
+        people: [],
+        question: '',
+      },
+      /* people: {
+        title: '',
+        name: '',
+        department: '',
+      } */
+      people: []
     }
   },
   methods: {
     toggle: function() {
       this.show = !this.show;
+    },
+    savepeople: function() {
+       $.ajax({
+        url: "https://ethercalc.org/_/622t4v2804sk",
+        type: 'POST',
+        dataType: 'application/json',
+        contentType: 'text/csv',
+        processData: false,
+        data: 'people' + ',' + this.people.title + ',' + this.people.name + ',' + this.people.department
+      });
+      console.log('people' + ',' + this.people.title + ',' + this.people.name + ',' + this.people.department)
     }
+  },
+  created: function () {
+    axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+      res.data.map(person => {
+        console.log(person)
+        if (person[0] == 'people') {
+          this.people.push(person)
+        }
+      })
+    })
   }
 }
 </script>
