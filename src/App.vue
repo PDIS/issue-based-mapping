@@ -5,8 +5,8 @@
     <!-- <router-view/> -->
     <div class="ui celled resizable grid">
       <div class="row">
-        <sidebar></sidebar>
-        <hackmd></hackmd>
+        <sidebar @clicklink="filelink"></sidebar>
+        <hackmd v-bind:address="address"></hackmd>
         <issue></issue>
       </div>
     </div>
@@ -27,6 +27,16 @@ export default {
     sidebar,
     hackmd,
     issue
+  },
+  data () {
+    return {
+      address: ''
+    }
+  },
+  methods: {
+    filelink: function (address) {
+      this.address = address
+    }
   }
 }
 </script>

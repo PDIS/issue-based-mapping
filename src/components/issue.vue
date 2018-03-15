@@ -263,12 +263,12 @@ export default {
       this.people = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
         res.data.map(person => {
-          if (person[0] == 'people') {
+          if (person[1] == 'people') {
             let data = {}
-            data.img = person[1]
-            data.title = person[2]
-            data.name = person[3]
-            data.dep = person[4]
+            data.img = person[2]
+            data.title = person[3]
+            data.name = person[4]
+            data.dep = person[5]
             data.time = '2017-10-10 13:42'
             this.people.push(data)
           }

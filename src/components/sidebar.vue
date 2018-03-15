@@ -6,8 +6,8 @@
       </div>
       <div class="content">
         <div class="ui middle aligned animated relaxed list">
-          <div class="item"  v-for="file in files" ><i class="file pdf outline icon"></i><div class="content"><a v-bind:href="file.address" target="_blank">{{file.name}}</a></div></div>
-          <div class="item"><i class="plus icon"></i><div class="content" id="add">新增議題相關文件</div></div>
+          <div class="item"  v-for="file in files" ><i class="file pdf outline icon"></i><div class="content" @click="clicklink(file)">{{file.name}}</div></div>
+          <div class="item"><i class="plus icon"></i><div class="content" id="add" >新增議題相關文件</div></div>
       <!--     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
           <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
           <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div> -->
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <addfile ref="sidebar"></addfile>
+    <addfile></addfile>
     <step1></step1>
     <step2></step2>
   </div>
@@ -143,14 +143,17 @@ export default {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
         res.data.map(file => {
-          if (file[0] == 'menu') {
+          if (file[1] == 'menu') {
             let data = {}
-            data.name = file[1]
-            data.address = file[2]
+            data.name = file[2]
+            data.address = file[3]
             this.files.push(data)
           }
         })
       })
+    },
+    clicklink: function (file) {
+      this.$emit('clicklink', file.address)
     }
   },
   created: function() {
