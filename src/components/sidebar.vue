@@ -15,7 +15,7 @@
       </div>
       <div class="title"><i class="dropdown icon"></i><i class="info icon"></i>議題相關資訊</div>
       <div class="content">
-        <div class="ui middle aligned animated relaxed list">   
+        <div class="ui middle aligned animated relaxed list">
           <div class="item"><i class="talk icon"></i><div class="content"><div class="header">提案名稱</div><div class="description">特定寵物進入國家森林公園、樂園</div></div></div>
           <div class="item"><i class="user icon"></i><div class="content"><div class="header">提案人</div><div class="description">米爸</div></div></div>
           <div class="item"><i class="hand pointer icon"></i><div class="content"><div class="header">附議人數</div><div class="description">5110</div></div></div>
@@ -33,8 +33,6 @@
       </div>
     </div>
     <addfile></addfile>
-    <step1></step1>
-    <step2></step2>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -44,14 +42,14 @@
         </div>
         <div class="content">
           <div class="ui middle aligned divided selection list">
-      <div class="item"><p><router-link to="/question">問題</router-link></p></div>          
+      <div class="item"><p><router-link to="/question">問題</router-link></p></div>
       <div class="item"><p><router-link to="/solution">解法</router-link></p></div>
       <div class="item"><p>佐證資料</p></div>
- 
+
     </div>
 
         </div>
-     
+
   <div class="title"><i class="dropdown icon"></i>釐清利害關係人</div>
   <div class="content"></div>
 
@@ -70,7 +68,7 @@
    margin-left: 2em;
    cursor: pointer
  }
- 
+
  a {
    color:black
  }
@@ -117,14 +115,12 @@ import VueTour from 'vue-tour'
 require('vue-tour/dist/vue-tour.css')
 
 import addfile from './modals/addfile'
-import step1 from './guidetour/step1'
-import step2 from './guidetour/step2'
+import guidetour from './guidetour/guidetour'
 export default {
   name: 'sidebar',
   components: {
     addfile,
-    step1,
-    step2,
+    guidetour,
   },
   data() {
     return {
@@ -136,8 +132,11 @@ export default {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
     },
     guidetour: function() {
-      $('#step1').modal('setting', 'closable', false)
-    .modal('show');
+    //   $('#step1').modal('setting', 'closable', false)
+    // .modal('show');
+
+      this.$tours['myTour'].start()
+      // guidetour.start();
     },
     getdata: function () {
       this.files = []
@@ -161,6 +160,6 @@ export default {
    /*  let res = fetch('https://ethercalc.org/622t4v2804sk.csv.json')
     let data = res.json()
     console.log(data) */
-  } 
+  }
 }
 </script>
