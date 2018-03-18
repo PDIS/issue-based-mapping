@@ -32,11 +32,7 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <uploadfile v-bind:files="files" v-bind:id='id' @uploadfile="fileschanged"></uploadfile>
-=======
-    <addfile></addfile>
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -110,21 +106,11 @@ import VueTour from 'vue-tour'
 
 require('vue-tour/dist/vue-tour.css')
 
-<<<<<<< HEAD
 import uploadfile from './modals/uploadfile'
 export default {
   name: 'sidebar',
   components: {
     uploadfile,
-=======
-import addfile from './modals/addfile'
-import guidetour from './guidetour/guidetour'
-export default {
-  name: 'sidebar',
-  components: {
-    addfile,
-    guidetour,
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
   },
   data() {
     return {
@@ -133,15 +119,8 @@ export default {
     }
   },
   methods: {
-    /* uploadfile: function (filename,fileaddress) {
+    uploadfile: function (filename,fileaddress) {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
-<<<<<<< HEAD
-    }, */
-/*     guidetour: function() {
-      $('#step1').modal('setting', 'closable', false)
-    .modal('show');
-    }, */
-=======
     },
     guidetour: function() {
     //   $('#step1').modal('setting', 'closable', false)
@@ -150,7 +129,6 @@ export default {
       this.$tours['myTour'].start()
       // guidetour.start();
     },
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
     getdata: function () {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
@@ -179,18 +157,11 @@ export default {
   },
   created: function() {
     this.getdata()
-<<<<<<< HEAD
   },
   watch: {
     files: function() {
-      this.id = parseInt(this.id)+1
+      this.id = parseInt(this.id) + 1
     }
   } 
-=======
-   /*  let res = fetch('https://ethercalc.org/622t4v2804sk.csv.json')
-    let data = res.json()
-    console.log(data) */
-  }
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
 }
 </script>

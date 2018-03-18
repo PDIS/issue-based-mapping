@@ -26,6 +26,7 @@ import sidebar from './components/sidebar'
 import hackmd from './components/hackmd'
 import issue from './components/issue'
 import guidetour from './components/guidetour/guidetour'
+
 export default {
   name: 'App',
   components: {
@@ -39,9 +40,7 @@ export default {
   data () {
     return {
       address: '',
-<<<<<<< HEAD
-      id: ''
-=======
+      id: '',
       steps: [
         {
           target: '#hackmd',
@@ -71,7 +70,6 @@ export default {
           }
         }
       ]
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
     }
   },
   methods: {
@@ -84,15 +82,12 @@ export default {
       })
     }
   },
-<<<<<<< HEAD
   created: function() {
     this.getid()
   }
-=======
   // mounted: function(){
   //   //console.log(guidetour.data());
   // }
->>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
 }
 </script>
 
