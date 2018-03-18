@@ -6,13 +6,17 @@
     <div class="ui celled resizable grid">
       <!-- <input type="hidden" name="id" v-model="id"> -->
       <div class="row">
+
         <sidebar @clicklink="filelink"></sidebar>
         <hackmd v-bind:address="address"></hackmd>
         <issue></issue>
       </div>
     </div>
+      <v-tour name="myTour" :steps="steps"></v-tour>
   </div>
 </template>
+
+
 
 <script>
 import axios from 'axios'
@@ -21,6 +25,7 @@ import footer from './components/footer'
 import sidebar from './components/sidebar'
 import hackmd from './components/hackmd'
 import issue from './components/issue'
+import guidetour from './components/guidetour/guidetour'
 export default {
   name: 'App',
   components: {
@@ -28,12 +33,45 @@ export default {
     'v-footer': footer,
     sidebar,
     hackmd,
-    issue
+    issue,
+    guidetour
   },
   data () {
     return {
       address: '',
+<<<<<<< HEAD
       id: ''
+=======
+      steps: [
+        {
+          target: '#hackmd',
+          content: `111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
+          錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+          ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
+        },
+        {
+          target: '#content',
+          content: `2222222
+          錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+          ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
+        },
+        {
+          target: '#hackmd',
+          content: `3333333
+          錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+          ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+          記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`,
+          params: {
+            placement: 'bottom'
+          }
+        }
+      ]
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
     }
   },
   methods: {
@@ -46,9 +84,15 @@ export default {
       })
     }
   },
+<<<<<<< HEAD
   created: function() {
     this.getid()
   }
+=======
+  // mounted: function(){
+  //   //console.log(guidetour.data());
+  // }
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
 }
 </script>
 
@@ -98,7 +142,7 @@ html,body {height: 100%;}
         background-color: #4f93ce;
         color: white;
       }
-      
+
       #content {
         margin-left: 19%;
         width: 81%;
@@ -122,7 +166,7 @@ html,body {height: 100%;}
       #content table.ui.table thead th {
         border-bottom: 2px solid #eee !important;
       } */
-/* 
+/*
 .ui.footer.segment {
   margin: 5em 0em 0em;
   padding: 5em 0em;

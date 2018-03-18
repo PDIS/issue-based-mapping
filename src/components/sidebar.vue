@@ -15,7 +15,7 @@
       </div>
       <div class="title"><i class="dropdown icon"></i><i class="info icon"></i>議題相關資訊</div>
       <div class="content">
-        <div class="ui middle aligned animated relaxed list">   
+        <div class="ui middle aligned animated relaxed list">
           <div class="item"><i class="talk icon"></i><div class="content"><div class="header">提案名稱</div><div class="description">特定寵物進入國家森林公園、樂園</div></div></div>
           <div class="item"><i class="user icon"></i><div class="content"><div class="header">提案人</div><div class="description">米爸</div></div></div>
           <div class="item"><i class="hand pointer icon"></i><div class="content"><div class="header">附議人數</div><div class="description">5110</div></div></div>
@@ -32,7 +32,11 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <uploadfile v-bind:files="files" v-bind:id='id' @uploadfile="fileschanged"></uploadfile>
+=======
+    <addfile></addfile>
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -42,14 +46,14 @@
         </div>
         <div class="content">
           <div class="ui middle aligned divided selection list">
-      <div class="item"><p><router-link to="/question">問題</router-link></p></div>          
+      <div class="item"><p><router-link to="/question">問題</router-link></p></div>
       <div class="item"><p><router-link to="/solution">解法</router-link></p></div>
       <div class="item"><p>佐證資料</p></div>
- 
+
     </div>
 
         </div>
-     
+
   <div class="title"><i class="dropdown icon"></i>釐清利害關係人</div>
   <div class="content"></div>
 
@@ -68,7 +72,7 @@
    margin-left: 2em;
    cursor: pointer
  }
- 
+
  a {
    color:black
  }
@@ -106,11 +110,21 @@ import VueTour from 'vue-tour'
 
 require('vue-tour/dist/vue-tour.css')
 
+<<<<<<< HEAD
 import uploadfile from './modals/uploadfile'
 export default {
   name: 'sidebar',
   components: {
     uploadfile,
+=======
+import addfile from './modals/addfile'
+import guidetour from './guidetour/guidetour'
+export default {
+  name: 'sidebar',
+  components: {
+    addfile,
+    guidetour,
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
   },
   data() {
     return {
@@ -121,11 +135,22 @@ export default {
   methods: {
     /* uploadfile: function (filename,fileaddress) {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
+<<<<<<< HEAD
     }, */
 /*     guidetour: function() {
       $('#step1').modal('setting', 'closable', false)
     .modal('show');
     }, */
+=======
+    },
+    guidetour: function() {
+    //   $('#step1').modal('setting', 'closable', false)
+    // .modal('show');
+
+      this.$tours['myTour'].start()
+      // guidetour.start();
+    },
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
     getdata: function () {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
@@ -154,11 +179,18 @@ export default {
   },
   created: function() {
     this.getdata()
+<<<<<<< HEAD
   },
   watch: {
     files: function() {
       this.id = parseInt(this.id)+1
     }
   } 
+=======
+   /*  let res = fetch('https://ethercalc.org/622t4v2804sk.csv.json')
+    let data = res.json()
+    console.log(data) */
+  }
+>>>>>>> 417b0c2c66f587530ca19e81df105a1c5447a87b
 }
 </script>
