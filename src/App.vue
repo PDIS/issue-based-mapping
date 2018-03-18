@@ -4,6 +4,7 @@
     <!-- <sidebar></sidebar> -->
     <!-- <router-view/> -->
     <div class="ui celled resizable grid">
+      <!-- <input type="hidden" name="id" v-model="id"> -->
       <div class="row">
         <sidebar @clicklink="filelink"></sidebar>
         <hackmd v-bind:address="address"></hackmd>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import header from './components/header'
 import footer from './components/footer'
 import sidebar from './components/sidebar'
@@ -30,13 +32,22 @@ export default {
   },
   data () {
     return {
-      address: ''
+      address: '',
+      id: ''
     }
   },
   methods: {
     filelink: function (address) {
       this.address = address
+    },
+    getid: function() {
+      axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+        this.id = res.data.pop()[0]
+      })
     }
+  },
+  created: function() {
+    this.getid()
   }
 }
 </script>

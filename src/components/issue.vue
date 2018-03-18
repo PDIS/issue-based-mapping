@@ -278,7 +278,6 @@ export default {
   },
   watch: {
     people: function () {
-      console.log('hello')
     }
   },
   created: function () {

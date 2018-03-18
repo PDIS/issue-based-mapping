@@ -7,7 +7,7 @@
       <div class="content">
         <div class="ui middle aligned animated relaxed list">
           <div class="item"  v-for="file in files" ><i class="file pdf outline icon"></i><div class="content" @click="clicklink(file)">{{file.name}}</div></div>
-          <div class="item"><i class="plus icon"></i><div class="content" id="add" >新增議題相關文件</div></div>
+          <div class="item"><i class="plus icon"></i><div class="content" @click="upload" >新增議題相關文件</div></div>
       <!--     <div class="item"><i class="file icon"></i><div class="content">待辦事項</div></div>
           <div class="item"><i class="file icon"></i><div class="content">訪談筆記</div></div>
           <div class="item"><i class="file icon"></i><div class="content">議題研究筆記</div></div> -->
@@ -28,13 +28,11 @@
           <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
           <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
           <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
-          <div class="item"><i class="map icon"></i><div class="content" v-on:click="guidetour">導覽模式</div></div>
+          <div class="item"><i class="map icon"></i><div class="content">導覽模式</div></div>
         </div>
       </div>
     </div>
-    <addfile></addfile>
-    <step1></step1>
-    <step2></step2>
+    <uploadfile v-bind:files="files" v-bind:id='id' @uploadfile="fileschanged"></uploadfile>
   </div>
 <!--   <div class="three wide column">
     <div class="ui styled accordion">
@@ -102,49 +100,40 @@ $(document).ready(function () {
       trigger: '.title .icon'
     }
   })
-  $('#add').click(function () {
-    $('#addfile')
-    .modal('show');
-  })
-  $('#ok').click(function () {
-    $('.ui.modal')
-    .modal('hide');
-  })
 })
 import axios from 'axios'
 import VueTour from 'vue-tour'
 
 require('vue-tour/dist/vue-tour.css')
 
-import addfile from './modals/addfile'
-import step1 from './guidetour/step1'
-import step2 from './guidetour/step2'
+import uploadfile from './modals/uploadfile'
 export default {
   name: 'sidebar',
   components: {
-    addfile,
-    step1,
-    step2,
+    uploadfile,
   },
   data() {
     return {
       files: [],
+      id: '',
     }
   },
   methods: {
-    addfile: function (filename,fileaddress) {
+    /* uploadfile: function (filename,fileaddress) {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
-    },
-    guidetour: function() {
+    }, */
+/*     guidetour: function() {
       $('#step1').modal('setting', 'closable', false)
     .modal('show');
-    },
+    }, */
     getdata: function () {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+        this.id = res.data.pop()[0]
         res.data.map(file => {
           if (file[1] == 'menu') {
             let data = {}
+            data.id = file[0]
             data.name = file[2]
             data.address = file[3]
             this.files.push(data)
@@ -154,13 +143,22 @@ export default {
     },
     clicklink: function (file) {
       this.$emit('clicklink', file.address)
+    },
+    upload: function () {
+      $('.ui.modal').modal('show');
+    },
+    fileschanged: function(file) {
+      console.log(file)
+      this.files.push(file)
     }
   },
   created: function() {
     this.getdata()
-   /*  let res = fetch('https://ethercalc.org/622t4v2804sk.csv.json')
-    let data = res.json()
-    console.log(data) */
+  },
+  watch: {
+    files: function() {
+      this.id = parseInt(this.id)+1
+    }
   } 
 }
 </script>

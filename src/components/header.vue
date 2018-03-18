@@ -8,8 +8,8 @@
       <div class="item">主/協辦部會：內政部</div> -->
       <div class="right menu">
         <div class="item">
-          <div class="ui small input">
-            <input placeholder="關鍵字搜尋" />
+          <div class="ui small icon input">
+            <input placeholder="關鍵字搜尋" /><i class="search icon"></i>
           </div>
         </div>
         <div class="item">
