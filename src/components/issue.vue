@@ -12,28 +12,24 @@
     <div class="ui form">
        <div class="field">
         <label>問題描述</label>
-        <textarea placeholder="請輸入問題描述" v-bind="this.threads.description" ></textarea>
+        <textarea placeholder="請輸入問題描述" v-model="threads.description" ></textarea>
       </div>
       <div class="field">
               <label>關聯利害關係人</label>
-  <div class="ui fluid multiple search selection dropdown">
-  <input type="hidden" name="country">
-  <i class="dropdown icon"></i>
-  <div class="default text">關聯利害關係人</div>
-  <div class="menu">
-  <div class="item" data-value="af">提案人</div>
-  <div class="item" data-value="ax">林務局</div>
-  <div class="item" data-value="al">內政部</div>
-  </div>
-  </div>
+              <select class="ui fluid search dropdown" multiple="" v-model="threads.people">
+  <option value="">關聯利害關係人</option>
+  <option v-for="person in people" v-bind:value="person.title">{{person.title}}</option>
+              </select>
       </div>
       <div class="field">
         <label>關聯問題</label>
-        <select class="ui search dropdown">
+        <select class="ui search dropdown" v-model="threads.question">
   <option value="">關連問題到</option>
-  <option value="1">劃分區域</option>
+  <option v-for="question in questions" v-bind:value="question">{{question}}</option>
+  <option value="新增解法">+ 新增解法</option>
+ <!--  <option value="1">劃分區域</option>
   <option value="2">攜帶寵物證明</option>
-  <option value="0">+ 新增解法</option>
+  <option value="0">+ 新增解法</option> -->
 </select>
         <!-- <div class="ui selection dropdown">
           <input type="hidden" name="123"><i class="dropdown icon"></i>
@@ -223,18 +219,16 @@ export default {
         people: [],
         question: '',
       },
-      /* people: {
-        title: '',
-        name: '',
-        department: '',
-      } */
       people: [],
       person: {
         img: 'https://semantic-ui.com/images/avatar/large/elliot.jpg',
         title: '',
         name: '',
         dep: ''
-      }
+      },
+      selectedpeople: [],
+      questions: [],
+      selectedquestion: ''
     }
   },
   methods: {
@@ -262,6 +256,11 @@ export default {
     getdata: function () {
       this.people = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+        res.data.map(question => {
+          if (question[1] == 'question') {
+            this.questions.push(question[2])
+          }
+        })
         res.data.map(person => {
           if (person[1] == 'people') {
             let data = {}
@@ -278,7 +277,14 @@ export default {
   },
   watch: {
     people: function () {
-    }
+    },
+    threads: {
+      handler: function () {console.log(this.threads) },
+      deep: true,
+    },
+    /* selectedquestion: function() {
+      console.log(this.threads)
+    }, */
   },
   created: function () {
     this.getdata()
