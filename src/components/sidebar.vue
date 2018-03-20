@@ -132,7 +132,7 @@ export default {
     getdata: function () {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
-        this.id = res.data.pop()[0]
+        this.id = res.data.slice(-1)[0]
         res.data.map(file => {
           if (file[1] == 'menu') {
             let data = {}
