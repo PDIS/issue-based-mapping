@@ -8,36 +8,93 @@
 
   </div>
 </template>
+-->
 
+<script type="text/x-template" id="modal-template">
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+
+          <div class="modal-header">
+            <slot name="header">
+              default header
+            </slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+              default body
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</script>
 
 <script>
+
+
+
   export default {
     name: 'guidetour',
     data () {
       return {
         steps: [
           {
-            target: 'hackmd',
-            content: `Discover <strong>Vue Tour</strong>!`
+            target: '#hackmd',
+            content: `111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
+            錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+            ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
           },
           {
-            target: 'content',
-            content: 'An awesome plugin made with Vue.js!'
+            target: '#content',
+            content: `2222222
+            錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+            ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
           },
           {
-            target: '#v-step-2',
-            content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
-            params: {
-              placement: 'top'
-            }
+            target: '#hackmd',
+            content: `3333333
+            錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
+            ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
           }
         ]
       }
     },
     mounted: function (){
-      alert("11");
-    //  this.$tours['myTour'].start()
+
+    },
+    start: function() {
+      var steps = this.data().steps;
+      var step = steps[0].target;
+      var content = ` <modal v-if="showModal" @close="showModal = false">`;
+
+      //console.log(content);
+     $(step).prepend(content);
+       // for(var i=0;i<steps.length;i++) {
+       //  var step = steps[0];
+       //  $(step.target).modal('setting', 'closable', false).modal('show');
+       // }
+
+     //
+
     }
   }
 </script>
--->
