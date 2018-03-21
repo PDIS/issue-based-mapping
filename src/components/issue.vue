@@ -46,7 +46,7 @@
         <a>+新增問題描述</a>
       </div>
       <div class="ui divider"></div>
-      <div class="ui primary button">儲存</div>
+      <div class="ui primary button" @click="postthreads">儲存</div>
       <div class="ui button">取消</div>
   </div>
 </div>
@@ -228,7 +228,8 @@ export default {
       },
       selectedpeople: [],
       questions: [],
-      selectedquestion: ''
+      selectedquestion: '',
+      id: ''
     }
   },
   methods: {
@@ -249,13 +250,14 @@ export default {
         dataType: 'application/json',
         contentType: 'text/csv',
         processData: false,
-        data: 'people' + ',' + this.person.img + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
+        data: this.id + ',people' + ',' + this.person.img + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
       }).then(this.people.push(this.person)).then((this.person = {}))
       //.then(this.getdata())
     },
     getdata: function () {
       this.people = []
-      axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
+      axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {            
+        this.id = res.data.slice(-1)[0]
         res.data.map(question => {
           if (question[1] == 'question') {
             this.questions.push(question[2])
@@ -273,14 +275,31 @@ export default {
           }
         })
       })
+    },
+    postthreads: function() {
+      $.ajax({
+        url: "https://ethercalc.org/_/622t4v2804sk",
+        type: 'POST',
+        dataType: 'application/json',
+        contentType: 'text/csv',
+        processData: false,
+        data: parseInt(this.id) + ',threads,' + this.threads.description + ',"' + this.threads.people + '",' + this.threads.question
+      }).then(this.qq());
+    },
+    qq: function () {
+      
     }
   },
   watch: {
     people: function () {
+      this.id = parseInt(this.id) + 1
     },
     threads: {
-      handler: function () {console.log(this.threads) },
+      handler: function () {},
       deep: true,
+      countid: function () {
+        this.id = parseInt(this.id) + 1
+      }
     },
     /* selectedquestion: function() {
       console.log(this.threads)
