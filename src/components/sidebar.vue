@@ -28,7 +28,7 @@
           <div class="item"><i class="smile icon"></i><div class="content">歡迎頁面</div></div>
           <div class="item"><i class="book icon"></i><div class="content">使用手冊</div></div>
           <div class="item"><i class="question circle icon"></i><div class="content">常見問題</div></div>
-          <div class="item"><i class="map icon"></i><div class="content">導覽模式</div></div>
+          <div class="item"><i class="map icon"></i><div class="content" @click="guidetour">導覽模式</div></div>
         </div>
       </div>
     </div>
@@ -102,15 +102,14 @@ $(document).ready(function () {
   })
 })
 import axios from 'axios'
-import VueTour from 'vue-tour'
-
-require('vue-tour/dist/vue-tour.css')
+import guidetour from './guidetour/guidetour'
 
 import uploadfile from './modals/uploadfile'
 export default {
   name: 'sidebar',
   components: {
     uploadfile,
+    guidetour
   },
   data() {
     return {
@@ -125,14 +124,12 @@ export default {
     guidetour: function() {
     //   $('#step1').modal('setting', 'closable', false)
     // .modal('show');
-
-      this.$tours['myTour'].start()
-      // guidetour.start();
+      guidetour.start();
     },
     getdata: function () {
       this.files = []
       axios.get('https://ethercalc.org/622t4v2804sk.csv.json').then(res => {
-        this.id = res.data.pop()[0]
+        this.id = res.data.slice(-1)[0]
         res.data.map(file => {
           if (file[1] == 'menu') {
             let data = {}
@@ -162,6 +159,6 @@ export default {
     files: function() {
       this.id = parseInt(this.id) + 1
     }
-  } 
+  }
 }
 </script>
