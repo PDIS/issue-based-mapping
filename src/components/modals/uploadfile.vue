@@ -27,7 +27,6 @@
 <script>
 import axios from 'axios'
 import sidebar from '../sidebar'
-import { setTimeout } from 'timers';
 export default {
   name: 'addfile',
   components: {
