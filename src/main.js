@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import VueTour from 'vue-tour'
 import router from './router'
+import dbmat from './js/dbmate'
 
 Vue.config.productionTip = false
 
