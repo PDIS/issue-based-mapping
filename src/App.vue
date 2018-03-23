@@ -10,6 +10,7 @@
         <sidebar @clicklink="filelink"></sidebar>
         <hackmd v-bind:address="address"></hackmd>
         <issue></issue>
+        <browserdetection></browserdetection>
       </div>
     </div>
   </div>
@@ -25,6 +26,7 @@ import sidebar from './components/sidebar'
 import hackmd from './components/hackmd'
 import issue from './components/issue'
 import guidetour from './components/guidetour/guidetour'
+import browserdetection from './components/modals/browserdetection'
 
 export default {
   name: 'App',
@@ -34,7 +36,8 @@ export default {
     sidebar,
     hackmd,
     issue,
-    guidetour
+    guidetour,
+    browserdetection
   },
   data () {
     return {
