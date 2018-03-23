@@ -41,10 +41,10 @@ if (version === false) {
   /* document.getElementById('result').innerHTML = '<s>IE/Edge</s>'; */
 } else if (version >= 12) {
   //document.getElementById('result').innerHTML = 'Edge ' + version;
-  $('#browserdetection').modal('show');
+  $('#browserdetection').modal('setting', 'closable', false).modal('show');
 } else {
   //document.getElementById('result').innerHTML = 'IE ' + version;
-  $('#browserdetection').modal('show');
+  $('#browserdetection').modal('setting', 'closable', false).modal('show');
 }
 
 // add details to debug result
