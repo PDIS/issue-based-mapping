@@ -244,8 +244,12 @@ $(function () {
 ;
 })
 import axios from 'axios'
+import done from './modals/done'
 export default {
   name: 'issue',
+  components: {
+    done,
+  },
   data() {
     return {
       show: false,
@@ -367,7 +371,7 @@ export default {
       }).then(this.qq());
     },
     qq: function () {
-      
+      $('#done').modal('show');
     }
   },
   watch: {

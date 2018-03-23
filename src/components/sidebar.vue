@@ -145,7 +145,7 @@ export default {
       this.$emit('clicklink', file.address)
     },
     upload: function () {
-      $('.ui.modal').modal('show');
+      $('#uploadfile').modal('show');
     },
     fileschanged: function(file) {
       console.log(file)
