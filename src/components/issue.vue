@@ -55,7 +55,11 @@
   <div class="ui divider"></div>
   <div class="ui cards">
     <div class="card" v-for="person in people" key:person.name>
+    
     <div class="image">
+        <span class="right floated">
+       <a @click="deleteperson(person.id)"> <i class="close icon red"></i></a>
+      </span>
       <a class="ui teal label">{{person.title}}</a>
       <img v-bind:src="person.img" />
     </div>
@@ -73,7 +77,7 @@
         2017-11-12 13:42
       </span>
            <span class="right floated">
-       <a>修改</a>
+       <a @click="editcard(person.id);">修改</a>
       </span>
     </div>
   </div>
@@ -100,6 +104,37 @@
     <button class="ui primary button" @click="toggle" v-else><i class="add icon"></i>新增利害關係人</button>
   </div>
   </div>
+
+
+<!-- edit card -->
+<div class="ui basic modal" style="width:auto;" id="editcard">
+  <i class="close icon"></i>
+  <div class="header">
+    修改利害關係人
+  </div>
+   <div class="ui cards">
+<div class="card">
+    <div class="content" >
+      <div class="ui form">
+    <div class="field">
+  <label>標籤</label>
+ <input type="text" placeholder="顯示標籤" v-model="person.title">
+  <label>姓名</label>
+  <input type="text" placeholder="請填寫姓名" v-model="person.name">
+  <label>單位</label>
+  <input type="text" placeholder="請填寫單位" v-model="person.dep">
+    </div>
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui primary button" @click="saveperson();">儲存</div>
+    </div>
+
+  </div>
+  </div>
+ 
+</div>
+
+
 </div>
 <div class="ui bottom attached tab segment" data-tab="policies">
     <h1 class="ui large header">釐清政策與策略</h1>
@@ -225,6 +260,7 @@ export default {
       },
       people: [],
       person: {
+        id:'',
         img: 'https://semantic-ui.com/images/avatar/large/elliot.jpg',
         title: '',
         name: '',
@@ -238,25 +274,68 @@ export default {
   },
   methods: {
     toggle: function() {
-      this.show = !this.show;
-      this.person.img = 'https://semantic-ui.com/images/avatar/large/elliot.jpg';
-      this.person.name = '';
-      this.person.title = '';
-      this.person.dep = '';
+
+            this.show = !this.show;
+            this.person.id = '';
+            this.person.img = 'https://semantic-ui.com/images/avatar/large/elliot.jpg';
+            this.person.name = '';
+            this.person.title = '';
+            this.person.dep = '';
+
+
+            
+     
     },
     toggle2: function() {
-      this.show = !this.show;
+       this.show = !this.show;
+      
     },
-    saveperson: function() {
-       $.ajax({
-        url: "https://ethercalc.org/_/622t4v2804sk",
-        type: 'POST',
-        dataType: 'application/json',
-        contentType: 'text/csv',
-        processData: false,
-        data: this.id + ',people' + ',' + this.person.img + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
-      }).then(this.people.push(this.person)).then((this.person = {}))
-      //.then(this.getdata())
+    saveperson:async function() {
+      //  $.ajax({
+      //   url: "https://ethercalc.org/_/622t4v2804sk",
+      //   type: 'POST',
+      //   dataType: 'application/json',
+      //   contentType: 'text/csv',
+      //   processData: false,
+      //   data: this.id + ',people' + ',' + this.person.img + ',' + this.person.title + ',' + this.person.name + ',' + this.person.dep,
+      // }).then(this.people.push(this.person)).then((this.person = {}))
+
+      if(this.person.id == '')
+      {//create
+        this.person.id= await CreateData(clsFunction.people,[ this.person.img,this.person.title ,this.person.name,this.person.dep]);
+
+        this.people.push(this.person);
+
+      }
+      else
+      {//update
+        UpdateData(this.person.id,[ this.person.img,this.person.title ,this.person.name,this.person.dep]);
+        this.getdata();
+        $('#editcard').modal('hide');
+      }
+
+   
+    },
+    editcard:async function(personid) {
+
+      $('#editcard').modal('show');
+      var editperson= await ReadDataByID(personid);
+      this.person.id = personid.toString();
+      this.person.img = 'https://semantic-ui.com/images/avatar/large/elliot.jpg';
+      this.person.name = editperson[4];
+      this.person.title = editperson[3];
+      this.person.dep = editperson[5];
+
+    },
+    deleteperson:function(personid)
+    {
+        var r = confirm("Are you sure to delete?");
+        if (r == true) {
+            DeleteData(personid);
+            this.getdata();
+        } else {
+           
+        }
     },
     getdata: function () {
       this.people = []
@@ -270,6 +349,7 @@ export default {
         res.data.map(person => {
           if (person[1] == 'people') {
             let data = {}
+            data.id = person[0]
             data.img = person[2]
             data.title = person[3]
             data.name = person[4]

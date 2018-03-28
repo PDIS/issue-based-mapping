@@ -27,7 +27,7 @@ function GetInsertKey() {
 }
 
 
-
+//
 async function CreateData(functionName, col_list) {
   var colData = '';
   col_list.forEach(element => {
@@ -43,14 +43,16 @@ async function CreateData(functionName, col_list) {
     processData: false,
     data: key + ',' + functionName + colData
   }).then(
-
+      console.log('CreateData>DONE')
   );
+  return key;
 }
 
 function ReadDataByID(key) { // use >> var getdata=await GetAllData();
   return new Promise(resolve => {
     $.get(postURL + '/csv.json', function (data, status) {
       resolve(data[key-1]);
+      console.log('ReadDataByID>DONE')
     });
   });
 }
@@ -67,7 +69,7 @@ function UpdateData(key, col_list) {
       processData: false,
       data: 'set ' + columsArray[i] + key + ' text t ' + col_list[i]
     }).then(
-
+      console.log('UpdateData>DONE')
     );
   }
 }
@@ -83,7 +85,7 @@ function DeleteData(key) {
       processData: false,
       data: 'set A' + key +':'+ columsArray[columsArray.length-1] + key+ ' empty ' 
     }).then(
-
+      console.log('DeleteData>DONE')
     );
   
 }
