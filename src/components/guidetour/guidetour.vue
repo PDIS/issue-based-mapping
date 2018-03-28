@@ -1,79 +1,56 @@
-<!--
 <template>
-  <div>
-    <div id="v-step-0">A DOM element on your page. The first step will pop on this element because its ID is 'v-step-0'.</div>
-    <div id="v-step-1">A DOM element on your page. The second step will pop on this element because its ID is 'v-step-1'.</div>
-    <div id="v-step-2">A DOM element on your page. The third and final step will pop on this element because its ID is 'v-step-2'.</div>
-
-
-  </div>
-</template>
--->
-
-<script type="text/x-template" id="modal-template">
-  <transition name="modal">
-    <div class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-
-          <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
-          </div>
-
-          <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-            </slot>
-          </div>
-        </div>
+    <div id="guidetour" v-bind:value="context">
+        {{context}}
+        <div id="tour-button">
+            <button class="ui button" v-bind:value="leftButton">{{leftButton}}</button>
+            <button class="ui button primary" v-bind:value="rightButton">{{rightButton}}</button>
       </div>
     </div>
-  </transition>
-</script>
+</template>
+<style>
+  .guidetour {
+      position: absolute;
+      padding: 5%;
+      z-index: 999;
+      background-color: rgba(239, 242, 247, 0.85);
+      width: 100%;
+      height: 100%;
+  }
+  </style>
+
+
 
 <script>
-
-
-
   export default {
     name: 'guidetour',
     data () {
       return {
+        context: 'aaaa',
+        leftButton:"取消",
+        rightButton:"繼續",
+        showGuideTour: false,
+        index: 0,
         steps: [
           {
             target: '#hackmd',
-            content: `111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
+            content: `<h1>這裡是您的空白筆記本</h1><p>111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
             錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
             ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
             記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
-            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內</p>`
           },
           {
             target: '#content',
-            content: `2222222
+            content: `<h1>這裡是您的議題分析區</h1><p>111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
             錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
             ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
             記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
-            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
+            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內</p>`
           },
           {
-            target: '#hackmd',
-            content: `3333333
-            錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫
-            ，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
-            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，
-            記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記錄開會內容`
+            target: '#app',
+            content:  `<h1>準備好了嗎？旅程愉快</h1><p>111111111在空白筆記本可以隨意書寫，記錄開會內容在空白筆記本可以隨意書寫，記
+            錄開會內容在空白筆記本可以隨意書寫，記錄開會內容在空白筆</p>`
           }
         ]
       }
@@ -82,19 +59,34 @@
 
     },
     start: function() {
+      this.data().showGuideTour = true;
+      var index = this.data().index;
+      index =1;
       var steps = this.data().steps;
-      var step = steps[0].target;
-      var content = ` <modal v-if="showModal" @close="showModal = false">`;
+      var target = steps[index].target;
+      var content = steps[index].content;
+      content = '<div id="guidetour">'+content+'</div>'
+      let targetElement = document.querySelector(target)
+      $(targetElement).prepend(content);
 
-      //console.log(content);
-     $(step).prepend(content);
-       // for(var i=0;i<steps.length;i++) {
-       //  var step = steps[0];
-       //  $(step.target).modal('setting', 'closable', false).modal('show');
-       // }
+      this.context = content;
+      console.log(targetElement);
+      this.leftButton = '111';
+      // self.template =
+/*
+     alert('cancel');
+     this.data().index = 0;
+     $( "tour-view" ).remove();
+     */
+   },
+   cancelTour: function() {
 
-     //
 
-    }
-  }
+   },
+   nextTour:function() {
+
+   }
+}
+
+
 </script>

@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <v-header></v-header>
+
     <!-- <sidebar></sidebar> -->
     <!-- <router-view/> -->
     <div class="ui celled resizable grid">
       <!-- <input type="hidden" name="id" v-model="id"> -->
       <div class="row">
-
+        <guidetour v-if="showGuideTour"></guidetour>
         <sidebar @clicklink="filelink"></sidebar>
         <hackmd v-bind:address="address"></hackmd>
         <issue></issue>
+
       </div>
     </div>
   </div>
@@ -26,6 +28,13 @@ import hackmd from './components/hackmd'
 import issue from './components/issue'
 import guidetour from './components/guidetour/guidetour'
 
+// import Vue from 'vue'
+//
+// Vue.component('guidetour', {
+// 	template: '#guidetour'
+// });
+
+
 export default {
   name: 'App',
   components: {
@@ -39,7 +48,8 @@ export default {
   data () {
     return {
       address: '',
-      id: ''
+      id: '11',
+      showGuideTour: guidetour.data().showGuideTour
     }
   },
   methods: {
@@ -54,6 +64,10 @@ export default {
   },
   created: function() {
     this.getid()
+  },
+  mounted: function() {
+    console.log(hackmd);
+    console.log(guidetour);
   }
 }
 </script>

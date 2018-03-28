@@ -108,8 +108,7 @@ import uploadfile from './modals/uploadfile'
 export default {
   name: 'sidebar',
   components: {
-    uploadfile,
-    guidetour
+    uploadfile
   },
   data() {
     return {
@@ -122,8 +121,7 @@ export default {
       axios.post('https://ethercalc.org/_/6cg3pkwwprdq',{filename,fileaddress}).then()
     },
     guidetour: function() {
-    //   $('#step1').modal('setting', 'closable', false)
-    // .modal('show');
+
       guidetour.start();
     },
     getdata: function () {
